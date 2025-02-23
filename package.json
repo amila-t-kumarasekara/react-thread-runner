@@ -1,6 +1,6 @@
 {
   "name": "react-thread-runner",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A React library for running CPU-intensive tasks in Web Workers",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

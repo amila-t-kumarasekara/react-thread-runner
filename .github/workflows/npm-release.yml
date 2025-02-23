@@ -29,10 +29,25 @@ jobs:
         with:
           node-version: '20'
           registry-url: 'https://registry.npmjs.org'
+      - name: Get version
+        id: package-version
+        uses: martinbeentjes/npm-get-version-action@v1.3.1
       - run: |
           npm ci
           npm run build
-          npm version --no-git-tag-version prerelease
           npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - name: Create Release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}
+        with:
+          tag_name: v${{ steps.package-version.outputs.current-version }}
+          release_name: Release v${{ steps.package-version.outputs.current-version }}
+          draft: false
+          prerelease: false
+          body: |
+            Release version ${{ steps.package-version.outputs.current-version }}
+            
+            See [CHANGELOG](https://github.com/amila-t-kumarasekara/react-thread-runner/blob/master/CHANGELOG.md) for details.
