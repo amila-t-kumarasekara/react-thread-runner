@@ -13,11 +13,12 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: '20'
+          registry-url: 'https://registry.npmjs.org'
       - run: |
-          node --version
-          npm --version
           npm ci
           npm run build
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
   publish:
     needs: build
@@ -27,14 +28,11 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: '20'
+          registry-url: 'https://registry.npmjs.org'
       - run: |
-          echo "_auth=$NPM_PUBLISH_KEY" >> .npmrc
-          echo "email=$NPM_EMAIL" >> .npmrc
-          echo "always-auth=true" >> .npmrc
           npm ci
           npm run build
           npm version --no-git-tag-version prerelease
           npm publish
         env:
-          NPM_PUBLISH_KEY: ${{ secrets.NPM_PUBLISH_KEY }}
-          NPM_EMAIL: ${{ secrets.NPM_EMAIL }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
