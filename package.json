@@ -1,0 +1,44 @@
+{
+  "name": "react-thread-runner",
+  "version": "1.0.3",
+  "description": "A React library for running CPU-intensive tasks in Web Workers",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "react",
+    "web-workers",
+    "threading",
+    "performance"
+  ],
+  "author": {
+    "name": "Amila Kumarasekara",
+    "email": "amilathushara15@gmail.com"
+  },
+  "contributors": [
+    {
+      "name": "Amila kumarasekara",
+      "email": "amilathushara15@gmail.com"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/amila-t-kumarasekara/react-thread-runner.git"
+  },
+  "license": "MIT",
+  "peerDependencies": {
+    "react": ">=16.8.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.0",
+    "typescript": "^5.0.0",
+    "react": "^18.2.0"
+  }
+}
